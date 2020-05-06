@@ -1,0 +1,29 @@
+version: '2'
+services:
+  web:
+    container_name: covid-tracker-web
+    image: eswaraiahji/covid-tracker:latest
+    expose:
+      - 9000
+    ports:
+      - 9000:9000
+    depends_on:
+      - db
+  db:
+    container_name: covid-tracker
+    image: postgres:12.2
+    volumes:
+      - covid-tracker:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=Xebia123
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=covidtracker
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    expose:
+      - 5550
+    ports:
+      - "5550:5550"
+    command: -p 5550
+
+volumes:
+  covid-tracker: {}

@@ -1,0 +1,83 @@
+---
+spring:
+  application:
+    name: covid-tracker
+  profiles: local
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/covidtracker
+    username: postgres
+    password: Xebia123
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+server:
+  port: 9000
+  servlet:
+    context-path: /api/covid
+
+page:
+  default-number: 0
+  default-size: 15
+---
+spring:
+  application:
+    name: covid-tracker
+  profiles: prod
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://db:5550/covidtracker
+    username: postgres
+    password: Xebia123
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+server:
+  port: 9000
+  servlet:
+    context-path: /api/covid
+
+page:
+  default-number: 0
+  default-size: 15
+
+---
+spring:
+  application:
+    name: covid-tracker
+  profiles: test
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 30
+      idle-timeout: 300000
+      connection-test-query: SELECT 1
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+server:
+  port: 9000
