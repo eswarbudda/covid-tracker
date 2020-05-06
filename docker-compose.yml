@@ -1,6 +1,7 @@
-version: '2'
+version: '3'
 services:
   web:
+    build: .
     container_name: covid-tracker-web
     image: eswaraiahji/covid-tracker:latest
     expose:

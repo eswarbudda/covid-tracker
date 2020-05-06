@@ -3,9 +3,13 @@
 Pre-requisites:
 - java 1.8
 - mvn 3.x
+- docker
+- docker-compose
 
 Deploy:
-- cd xebia-assignment/scripts folder
+- cd xebia-assignment 
+- mvn clean package -DskipTests=true
+- cd scripts
 - run ./deploy.sh
 
 ToDo:
